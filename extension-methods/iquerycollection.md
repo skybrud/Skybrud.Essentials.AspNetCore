@@ -1,6 +1,8 @@
 # IQueryCollection
 
-#### Strings
+## GetString...
+
+The `.GetString()`, `.GetStringArray()` and `.GetStringList()` extension methods allow you get get either a single string value, a string array or a string list respectively. The `.GetStringArray()` and `.GetStringList()` methods look for multiple parameters with the specified, but also split each value by using the `,`, ` `, `\r`, `\n` and `\t` characters as separators.
 
 ```cshtml
 @using Microsoft.AspNetCore.Http
@@ -36,7 +38,9 @@
 }
 ```
 
-#### Int32
+## GetInt32...
+
+Get the value as a single or multi 32-bit integer values (`int`):
 
 ```cshtml
 @using Microsoft.AspNetCore.Http
@@ -80,7 +84,9 @@
 }
 ```
 
-#### Int64
+## GetInt64
+
+Get the value as a single or multi 64-bit integer values (`long`):
 
 ```cshtml
 @using Microsoft.AspNetCore.Http
@@ -124,7 +130,9 @@
 }
 ```
 
-#### Float
+## Float
+
+Get the value as a single or multi single precision floating point numbers (`float`):
 
 ```cshtml
 @using Microsoft.AspNetCore.Http
@@ -168,7 +176,9 @@
 }
 ```
 
-#### Double
+## Double
+
+Get the value as a single or multi double precision floating point numbers (`double`):
 
 ```cshtml
 @using Microsoft.AspNetCore.Http
@@ -212,7 +222,9 @@
 }
 ```
 
-#### Boolean
+## Boolean
+
+Get the value as a single or multi boolean values (`bool`):
 
 ```cshtml
 @using Microsoft.AspNetCore.Http
