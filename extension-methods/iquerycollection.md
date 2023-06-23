@@ -1,5 +1,7 @@
 # IQueryCollection
 
+The <code type="Skybrud.Essentials.AspNetCore.QueryStringExtensions">QueryStringExtensions</code> features a number of extension methods for reading from instances of ASP.NET Core's [`IQueryCollection`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iquerycollection).
+
 ## GetString...
 
 The `.GetString()`, `.GetStringArray()` and `.GetStringList()` extension methods allow you get get either a single string value, a string array or a string list respectively. The `.GetStringArray()` and `.GetStringList()` methods look for multiple parameters with the specified, but also split each value by using the `,`, ` `, `\r`, `\n` and `\t` characters as separators.
