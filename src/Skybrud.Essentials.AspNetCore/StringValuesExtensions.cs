@@ -15,7 +15,7 @@ namespace Skybrud.Essentials.AspNetCore;
 /// </summary>
 public static class StringValuesExtensions {
 
-    internal static readonly char[] DefaultSeparators = { ',', ' ', '\r', '\n', '\t' };
+    internal static readonly char[] DefaultSeparators = [',', ' ', '\r', '\n', '\t'];
 
     #region ToString...
 
@@ -25,7 +25,7 @@ public static class StringValuesExtensions {
     /// <param name="values">The string values.</param>
     /// <returns>An array of <see cref="string"/>.</returns>
     public static string[] ToStringArray(this StringValues? values) {
-        return values?.SelectMany(StringUtils.ParseStringArray).ToArray() ?? Array.Empty<string>();
+        return values?.SelectMany(StringUtils.ParseStringArray).ToArray() ?? [];
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public static class StringValuesExtensions {
     /// <param name="separators">An array of supported separators.</param>
     /// <returns>An array of <see cref="string"/>.</returns>
     public static string[] ToStringArray(this StringValues? values, params char[] separators) {
-        return values?.SelectMany(x => StringUtils.ParseStringArray(x, separators)).ToArray() ?? Array.Empty<string>();
+        return values?.SelectMany(x => StringUtils.ParseStringArray(x, separators)).ToArray() ?? [];
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ public static class StringValuesExtensions {
     /// <param name="values">The string values.</param>
     /// <returns>A list of <see cref="string"/>.</returns>
     public static List<string> ToStringList(this StringValues? values) {
-        return values?.SelectMany(StringUtils.ParseStringArray).ToList() ?? new List<string>();
+        return values?.SelectMany(StringUtils.ParseStringArray).ToList() ?? [];
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public static class StringValuesExtensions {
     /// <param name="separators">An array of supported separators.</param>
     /// <returns>A list of <see cref="string"/>.</returns>
     public static List<string> ToStringList(this StringValues? values, params char[] separators) {
-        return values?.SelectMany(x => StringUtils.ParseStringArray(x, separators)).ToList() ?? new List<string>();
+        return values?.SelectMany(x => StringUtils.ParseStringArray(x, separators)).ToList() ?? [];
     }
 
     #endregion
@@ -100,7 +100,7 @@ public static class StringValuesExtensions {
     /// <param name="values">The string values.</param>
     /// <returns>An array of <see cref="int"/>.</returns>
     public static int[] ToInt32Array(this StringValues values) {
-        return values.SelectMany(StringUtils.ParseInt32Array).ToArray();
+        return [.. values.SelectMany(StringUtils.ParseInt32Array)];
     }
 
     /// <summary>
@@ -109,7 +109,7 @@ public static class StringValuesExtensions {
     /// <param name="values">The string values.</param>
     /// <returns>A list of <see cref="int"/>.</returns>
     public static List<int> ToInt32List(this StringValues values) {
-        return values.SelectMany(StringUtils.ParseInt32List).ToList();
+        return [.. values.SelectMany(StringUtils.ParseInt32List)];
     }
 
     #endregion
@@ -155,7 +155,7 @@ public static class StringValuesExtensions {
     /// <param name="values">The string values.</param>
     /// <returns>An array of <see cref="long"/>.</returns>
     public static long[] ToInt64Array(this StringValues values) {
-        return values.SelectMany(StringUtils.ParseInt64Array).ToArray();
+        return [.. values.SelectMany(StringUtils.ParseInt64Array)];
     }
 
     /// <summary>
@@ -164,7 +164,7 @@ public static class StringValuesExtensions {
     /// <param name="values">The string values.</param>
     /// <returns>A list of <see cref="long"/>.</returns>
     public static List<long> ToInt64List(this StringValues values) {
-        return values.SelectMany(StringUtils.ParseInt64List).ToList();
+        return [.. values.SelectMany(StringUtils.ParseInt64List)];
     }
 
     #endregion
@@ -210,7 +210,7 @@ public static class StringValuesExtensions {
     /// <param name="values">The string values.</param>
     /// <returns>An array of <see cref="float"/>.</returns>
     public static float[] ToFloatArray(this StringValues values) {
-        return values.SelectMany(StringUtils.ParseFloatArray).ToArray();
+        return [.. values.SelectMany(StringUtils.ParseFloatArray)];
     }
 
     /// <summary>
@@ -219,7 +219,7 @@ public static class StringValuesExtensions {
     /// <param name="values">The string values.</param>
     /// <returns>A list of <see cref="float"/>.</returns>
     public static List<float> ToFloatList(this StringValues values) {
-        return values.SelectMany(StringUtils.ParseFloatList).ToList();
+        return [.. values.SelectMany(StringUtils.ParseFloatList)];
     }
 
     #endregion
@@ -265,7 +265,7 @@ public static class StringValuesExtensions {
     /// <param name="values">The string values.</param>
     /// <returns>An array of <see cref="double"/>.</returns>
     public static double[] ToDoubleArray(this StringValues values) {
-        return values.SelectMany(StringUtils.ParseDoubleArray).ToArray();
+        return [.. values.SelectMany(StringUtils.ParseDoubleArray)];
     }
 
     /// <summary>
@@ -274,7 +274,7 @@ public static class StringValuesExtensions {
     /// <param name="values">The string values.</param>
     /// <returns>A list of <see cref="double"/>.</returns>
     public static List<double> ToDoubleList(this StringValues values) {
-        return values.SelectMany(StringUtils.ParseDoubleList).ToList();
+        return [.. values.SelectMany(StringUtils.ParseDoubleList)];
     }
 
     #endregion
@@ -356,7 +356,7 @@ public static class StringValuesExtensions {
     /// <param name="values">The string values.</param>
     /// <returns>An array of <see cref="Guid"/>.</returns>
     public static Guid[] ToGuidArray(this StringValues values) {
-        return values.SelectMany(StringUtils.ParseGuidArray).ToArray();
+        return [.. values.SelectMany(StringUtils.ParseGuidArray)];
     }
 
     /// <summary>
@@ -365,7 +365,7 @@ public static class StringValuesExtensions {
     /// <param name="values">The string values.</param>
     /// <returns>A list of <see cref="Guid"/>.</returns>
     public static List<Guid> ToGuidList(this StringValues values) {
-        return values.SelectMany(StringUtils.ParseGuidList).ToList();
+        return [.. values.SelectMany(StringUtils.ParseGuidList)];
     }
 
     #endregion
@@ -411,7 +411,7 @@ public static class StringValuesExtensions {
     /// <param name="values">The string values.</param>
     /// <returns>An array of <typeparamref name="TEnum"/>.</returns>
     public static TEnum[] ToEnumArray<TEnum>(this StringValues? values) where TEnum : struct, Enum {
-        return values is { Count: > 0 } ? ToEnumList<TEnum>(values).ToArray() : Array.Empty<TEnum>();
+        return values is { Count: > 0 } ? [.. ToEnumList<TEnum>(values)] : [];
     }
 
     /// <summary>
@@ -421,7 +421,7 @@ public static class StringValuesExtensions {
     /// <param name="separators">An array of supported separators.</param>
     /// <returns>An array of <typeparamref name="TEnum"/>.</returns>
     public static TEnum[] ToEnumArray<TEnum>(this StringValues? values, params char[] separators) where TEnum : struct, Enum {
-        return values is { Count: > 0 } ? ToEnumList<TEnum>(values, separators).ToArray() : Array.Empty<TEnum>();
+        return values is { Count: > 0 } ? [.. ToEnumList<TEnum>(values, separators)] : [];
     }
 
     /// <summary>
@@ -441,7 +441,7 @@ public static class StringValuesExtensions {
     /// <returns>A list of <typeparamref name="TEnum"/>.</returns>
     public static List<TEnum> ToEnumList<TEnum>(this StringValues? values, params char[] separators) where TEnum : struct, Enum {
 
-        List<TEnum> list = new();
+        List<TEnum> list = [];
         if (values is null) return list;
 
         foreach (string? value in values) {

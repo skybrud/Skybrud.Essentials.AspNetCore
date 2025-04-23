@@ -26,7 +26,7 @@ public class NewtonsoftJsonOnlyConfigurationAttribute : TypeFilterAttribute {
         Casing = casing;
         Formatting = formatting;
         Order = 1;
-        Arguments = new object[] { this };
+        Arguments = [this];
     }
 
 }

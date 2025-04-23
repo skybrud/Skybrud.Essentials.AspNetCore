@@ -201,7 +201,7 @@ public static class QueryStringExtensions {
     /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="int"/>
     /// value will be ignored.</remarks>
     public static int[] GetInt32Array(this IQueryCollection? query, string key) {
-        return query == null ? Array.Empty<int>() : query[key].ToInt32Array();
+        return query == null ? [] : query[key].ToInt32Array();
     }
 
     /// <summary>
@@ -214,7 +214,7 @@ public static class QueryStringExtensions {
     /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="int"/>
     /// value will be ignored.</remarks>
     public static List<int> GetInt32List(this IQueryCollection? query, string key) {
-        return query?[key].ToInt32List() ?? new List<int>();
+        return query?[key].ToInt32List() ?? [];
     }
 
     #endregion
@@ -293,7 +293,7 @@ public static class QueryStringExtensions {
     /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="long"/>
     /// value will be ignored.</remarks>
     public static long[] GetInt64Array(this IQueryCollection? query, string key) {
-        return query == null ? Array.Empty<long>() : query[key].ToInt64Array();
+        return query == null ? [] : query[key].ToInt64Array();
     }
 
     /// <summary>
@@ -306,7 +306,7 @@ public static class QueryStringExtensions {
     /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="long"/>
     /// value will be ignored.</remarks>
     public static List<long> GetInt64List(this IQueryCollection? query, string key) {
-        return query?[key].ToInt64List() ?? new List<long>();
+        return query?[key].ToInt64List() ?? [];
     }
 
     #endregion
@@ -385,7 +385,7 @@ public static class QueryStringExtensions {
     /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="float"/>
     /// value will be ignored.</remarks>
     public static float[] GetFloatArray(this IQueryCollection? query, string key) {
-        return query?[key].ToFloatArray() ?? Array.Empty<float>();
+        return query?[key].ToFloatArray() ?? [];
     }
 
     /// <summary>
@@ -398,7 +398,7 @@ public static class QueryStringExtensions {
     /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="float"/>
     /// value will be ignored.</remarks>
     public static List<float> GetFloatList(this IQueryCollection? query, string key) {
-        return query?[key].ToFloatList() ?? new List<float>();
+        return query?[key].ToFloatList() ?? [];
     }
 
     #endregion
@@ -477,7 +477,7 @@ public static class QueryStringExtensions {
     /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="double"/>
     /// value will be ignored.</remarks>
     public static double[] GetDoubleArray(this IQueryCollection? query, string key) {
-        return query == null ? Array.Empty<double>() : query[key].ToDoubleArray();
+        return query == null ? [] : query[key].ToDoubleArray();
     }
 
     /// <summary>
@@ -490,7 +490,7 @@ public static class QueryStringExtensions {
     /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="double"/>
     /// value will be ignored.</remarks>
     public static List<double> GetDoubleList(this IQueryCollection? query, string key) {
-        return query?[key].ToDoubleList() ?? new List<double>();
+        return query?[key].ToDoubleList() ?? [];
     }
 
     #endregion
@@ -610,7 +610,7 @@ public static class QueryStringExtensions {
     /// <param name="key">The key of the query string component.</param>
     /// <returns>An instance of <see cref="List{Guid}"/>.</returns>
     public static Guid[] GetGuidArray(this IQueryCollection? query, string key) {
-        return query?[key].ToGuidArray() ?? Array.Empty<Guid>();
+        return query?[key].ToGuidArray() ?? [];
     }
 
     /// <summary>
@@ -620,7 +620,7 @@ public static class QueryStringExtensions {
     /// <param name="key">The key of the query string component.</param>
     /// <returns>An instance of <see cref="List{Guid}"/>.</returns>
     public static List<Guid> GetGuidList(this IQueryCollection? query, string key) {
-        return query?[key].ToGuidList() ?? new List<Guid>();
+        return query?[key].ToGuidList() ?? [];
     }
 
     /// <summary>
