@@ -196,7 +196,7 @@ public static class FormCollectionExtensions {
     /// <param name="key">The key of the form data components.</param>
     /// <returns>An <see cref="int"/> array representing the converted values.</returns>
     /// <remarks>The value of each form data component may themselves be a separated list of <see cref="int"/>
-    /// values - eg. separated by commas. Values that can not be converted to a corresponding <see cref="int"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="int"/>
     /// value will be ignored.</remarks>
     public static int[] GetInt32Array(this IFormCollection? formData, string key) {
         return formData == null ? Array.Empty<int>() : formData[key].ToInt32Array();
@@ -209,7 +209,7 @@ public static class FormCollectionExtensions {
     /// <param name="key">The key of the form data components.</param>
     /// <returns>An <see cref="int"/> list representing the converted values.</returns>
     /// <remarks>The value of each form data component may themselves be a separated list of <see cref="int"/>
-    /// values - eg. separated by commas. Values that can not be converted to a corresponding <see cref="int"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="int"/>
     /// value will be ignored.</remarks>
     public static List<int> GetInt32List(this IFormCollection? formData, string key) {
         return formData?[key].ToInt32List() ?? new List<int>();
@@ -288,7 +288,7 @@ public static class FormCollectionExtensions {
     /// <param name="key">The key of the form data components.</param>
     /// <returns>A <see cref="long"/> array representing the converted values.</returns>
     /// <remarks>The value of each form data component may themselves be a separated list of <see cref="long"/>
-    /// values - eg. separated by commas. Values that can not be converted to a corresponding <see cref="long"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="long"/>
     /// value will be ignored.</remarks>
     public static long[] GetInt64Array(this IFormCollection? formData, string key) {
         return formData == null ? Array.Empty<long>() : formData[key].ToInt64Array();
@@ -301,7 +301,7 @@ public static class FormCollectionExtensions {
     /// <param name="key">The key of the form data components.</param>
     /// <returns>A <see cref="long"/> list representing the converted values.</returns>
     /// <remarks>The value of each form data component may themselves be a separated list of <see cref="long"/>
-    /// values - eg. separated by commas. Values that can not be converted to a corresponding <see cref="long"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="long"/>
     /// value will be ignored.</remarks>
     public static List<long> GetInt64List(this IFormCollection? formData, string key) {
         return formData?[key].ToInt64List() ?? new List<long>();
@@ -380,7 +380,7 @@ public static class FormCollectionExtensions {
     /// <param name="key">The key of the form data components.</param>
     /// <returns>A <see cref="float"/> array representing the converted values.</returns>
     /// <remarks>The value of each form data component may themselves be a separated list of <see cref="float"/>
-    /// values - eg. separated by commas. Values that can not be converted to a corresponding <see cref="float"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="float"/>
     /// value will be ignored.</remarks>
     public static float[] GetFloatArray(this IFormCollection? formData, string key) {
         return formData?[key].ToFloatArray() ?? Array.Empty<float>();
@@ -393,7 +393,7 @@ public static class FormCollectionExtensions {
     /// <param name="key">The key of the form data components.</param>
     /// <returns>A <see cref="float"/> list representing the converted values.</returns>
     /// <remarks>The value of each form data component may themselves be a separated list of <see cref="float"/>
-    /// values - eg. separated by commas. Values that can not be converted to a corresponding <see cref="float"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="float"/>
     /// value will be ignored.</remarks>
     public static List<float> GetFloatList(this IFormCollection? formData, string key) {
         return formData?[key].ToFloatList() ?? new List<float>();
@@ -472,7 +472,7 @@ public static class FormCollectionExtensions {
     /// <param name="key">The key of the form data components.</param>
     /// <returns>A <see cref="double"/> array representing the converted values.</returns>
     /// <remarks>The value of each form data component may themselves be a separated list of <see cref="double"/>
-    /// values - eg. separated by commas. Values that can not be converted to a corresponding <see cref="double"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="double"/>
     /// value will be ignored.</remarks>
     public static double[] GetDoubleArray(this IFormCollection? formData, string key) {
         return formData == null ? Array.Empty<double>() : formData[key].ToDoubleArray();
@@ -485,7 +485,7 @@ public static class FormCollectionExtensions {
     /// <param name="key">The key of the form data components.</param>
     /// <returns>A <see cref="double"/> list representing the converted values.</returns>
     /// <remarks>The value of each form data component may themselves be a separated list of <see cref="double"/>
-    /// values - eg. separated by commas. Values that can not be converted to a corresponding <see cref="double"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="double"/>
     /// value will be ignored.</remarks>
     public static List<double> GetDoubleList(this IFormCollection? formData, string key) {
         return formData?[key].ToDoubleList() ?? new List<double>();

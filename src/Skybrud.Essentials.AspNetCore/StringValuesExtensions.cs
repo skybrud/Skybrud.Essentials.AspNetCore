@@ -23,7 +23,7 @@ public static class StringValuesExtensions {
     /// Parses the specified array of string <paramref name="values"/> into a <see cref="string"/> array.
     /// </summary>
     /// <param name="values">The string values.</param>
-    /// <returns>A array of <see cref="string"/>.</returns>
+    /// <returns>An array of <see cref="string"/>.</returns>
     public static string[] ToStringArray(this StringValues? values) {
         return values?.SelectMany(StringUtils.ParseStringArray).ToArray() ?? Array.Empty<string>();
     }
@@ -33,7 +33,7 @@ public static class StringValuesExtensions {
     /// </summary>
     /// <param name="values">The string values.</param>
     /// <param name="separators">An array of supported separators.</param>
-    /// <returns>A array of <see cref="string"/>.</returns>
+    /// <returns>An array of <see cref="string"/>.</returns>
     public static string[] ToStringArray(this StringValues? values, params char[] separators) {
         return values?.SelectMany(x => StringUtils.ParseStringArray(x, separators)).ToArray() ?? Array.Empty<string>();
     }

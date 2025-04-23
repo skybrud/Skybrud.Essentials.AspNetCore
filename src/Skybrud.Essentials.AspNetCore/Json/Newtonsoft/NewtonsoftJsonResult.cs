@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace Skybrud.Essentials.AspNetCore.Json.Newtonsoft;
 
 /// <summary>
-/// Class representing a JOSN based result serialized using <strong>Newtonsoft.Json</strong>.
+/// Class representing a JSON based result serialized using <strong>Newtonsoft.Json</strong>.
 /// </summary>
 public class NewtonsoftJsonResult : ContentResult {
 

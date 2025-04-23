@@ -9,7 +9,7 @@ namespace Skybrud.Essentials.AspNetCore.Json.Newtonsoft;
 public class NewtonsoftJsonBody {
 
     /// <summary>
-    /// Gets or sets the meta data for the response.
+    /// Gets or sets the meta-data for the response.
     /// </summary>
     [JsonProperty(PropertyName = "meta")]
     public NewtonsoftJsonMetaData Meta { get; set; } = new();

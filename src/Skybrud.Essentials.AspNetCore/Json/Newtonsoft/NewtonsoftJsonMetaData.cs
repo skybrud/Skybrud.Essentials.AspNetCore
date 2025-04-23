@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace Skybrud.Essentials.AspNetCore.Json.Newtonsoft;
 
 /// <summary>
-/// Class representing the meta data of a JSON response.
+/// Class representing the meta-data of a JSON response.
 /// </summary>
 public class NewtonsoftJsonMetaData {
 
