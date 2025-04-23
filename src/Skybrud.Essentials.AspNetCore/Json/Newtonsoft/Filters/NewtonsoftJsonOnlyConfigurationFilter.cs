@@ -11,39 +11,37 @@ using Skybrud.Essentials.Json.Newtonsoft.Serialization;
 
 #pragma warning disable CS1591
 
-namespace Skybrud.Essentials.AspNetCore.Json.Newtonsoft.Filters {
+namespace Skybrud.Essentials.AspNetCore.Json.Newtonsoft.Filters;
 
-    public class NewtonsoftJsonOnlyConfigurationFilter : IResultFilter {
+public class NewtonsoftJsonOnlyConfigurationFilter : IResultFilter {
 
-        private readonly ArrayPool<char> _arrayPool;
-        private readonly MvcOptions _options;
+    private readonly ArrayPool<char> _arrayPool;
+    private readonly MvcOptions _options;
 
-        public NewtonsoftJsonOnlyConfigurationAttribute Attribute { get; }
+    public NewtonsoftJsonOnlyConfigurationAttribute Attribute { get; }
 
-        public NewtonsoftJsonOnlyConfigurationFilter(ArrayPool<char> arrayPool, IOptionsSnapshot<MvcOptions> options, NewtonsoftJsonOnlyConfigurationAttribute attribute) {
-            _arrayPool = arrayPool;
-            _options = options.Value;
-            Attribute = attribute;
-        }
+    public NewtonsoftJsonOnlyConfigurationFilter(ArrayPool<char> arrayPool, IOptionsSnapshot<MvcOptions> options, NewtonsoftJsonOnlyConfigurationAttribute attribute) {
+        _arrayPool = arrayPool;
+        _options = options.Value;
+        Attribute = attribute;
+    }
 
-        public void OnResultExecuted(ResultExecutedContext context) { }
+    public void OnResultExecuted(ResultExecutedContext context) { }
 
-        public virtual void OnResultExecuting(ResultExecutingContext context) {
+    public virtual void OnResultExecuting(ResultExecutingContext context) {
 
-            if (context.Result is not ObjectResult objectResult) return;
+        if (context.Result is not ObjectResult objectResult) return;
 
-            JsonSerializerSettings serializerSettings = new() {
-                ContractResolver = new DefaultContractResolver() {
-                    NamingStrategy = new TextCasingNamingStrategy(Attribute.Casing)
-                },
-                Converters = { new VersionConverter() },
-                Formatting = Attribute.Formatting
-            };
+        JsonSerializerSettings serializerSettings = new() {
+            ContractResolver = new DefaultContractResolver() {
+                NamingStrategy = new TextCasingNamingStrategy(Attribute.Casing)
+            },
+            Converters = { new VersionConverter() },
+            Formatting = Attribute.Formatting
+        };
 
-            objectResult.Formatters.Clear();
-            objectResult.Formatters.Add(new NewtonsoftJsonOutputFormatter(serializerSettings, _arrayPool, _options));
-
-        }
+        objectResult.Formatters.Clear();
+        objectResult.Formatters.Add(new NewtonsoftJsonOutputFormatter(serializerSettings, _arrayPool, _options));
 
     }
 
