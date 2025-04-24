@@ -1,4 +1,9 @@
-# Skybrud.Essentials.AspNetCore [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/vpre/Skybrud.Essentials.AspNetCore.svg)](https://www.nuget.org/packages/Skybrud.Essentials.AspNetCore) [![NuGet](https://img.shields.io/nuget/dt/Skybrud.Essentials.AspNetCore.svg)](https://www.nuget.org/packages/Skybrud.Essentials.AspNetCore)
+# Skybrud.Essentials.AspNetCore
+
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+[![NuGet](https://img.shields.io/nuget/vpre/Skybrud.Essentials.AspNetCore.svg)](https://www.nuget.org/packages/Skybrud.Essentials.AspNetCore)
+[![NuGet](https://img.shields.io/nuget/dt/Skybrud.Essentials.AspNetCore.svg)](https://www.nuget.org/packages/Skybrud.Essentials.AspNetCore)
+[![Skybrud.Essentials.AspNetCore at packages.limbo.works](https://img.shields.io/badge/limbo-packages-blue)](https://packages.limbo.works/skybrud.essentials.aspnetcore/)
 
 **Skybrud.Essentials.AspNetCore** is an add-on that builds on top of our [Skybrud.Essentials](https://github.com/skybrud/Skybrud.Essentials) package, and it provides various logic that makes it easier to work with different parts of ASP.NET Core - eg. parsing query strings and reading request headers..
 
@@ -22,13 +27,13 @@
 To install the package via [**NuGet**](https://www.nuget.org/packages/Skybrud.Essentials.AspNetCore), you can use either .NET CLI:
 
 ```
-dotnet add package Skybrud.Essentials.AspNetCore --version 1.0.0
+dotnet add package Skybrud.Essentials.AspNetCore
 ```
 
-or the older Nuget package manager:
+or the NuGet package manager:
 
 ```
-Install-Package Skybrud.Essentials.AspNetCore -Version 1.0.0
+Install-Package Skybrud.Essentials.AspNetCore
 ```
 
 <br /><br />
