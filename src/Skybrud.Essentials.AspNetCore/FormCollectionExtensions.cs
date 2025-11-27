@@ -102,9 +102,24 @@ public static class FormCollectionExtensions {
     /// <param name="formData">The form data.</param>
     /// <param name="key">The key of the form data component(s).</param>
     /// <param name="separators">An array of supported separators.</param>
-    /// <returns>An array of <see cref="string"/>.</returns>
+    /// <returns>A list of <see cref="string"/>.</returns>
     public static List<string> GetStringList(this IFormCollection? formData, string key, params char[] separators) {
         return (formData?[key]).ToStringList(separators);
+    }
+
+    /// <summary>
+    /// Returns a set of <see cref="string"/> values representing the values of each form data component
+    /// matching the specified <paramref name="key"/>.
+    ///
+    /// Notice that this method support both multiple form data components with the same <paramref name="key"/>
+    /// as well as form data components where the value is separated by one of the following <paramref name="separators"/>.
+    /// </summary>
+    /// <param name="formData">The form data.</param>
+    /// <param name="key">The key of the form data component(s).</param>
+    /// <param name="separators">An array of supported separators.</param>
+    /// <returns>A set of <see cref="string"/> values.</returns>
+    public static HashSet<string> GetStringSet(this IFormCollection? formData, string key, params char[] separators) {
+        return (formData?[key]).ToStringSet(separators);
     }
 
     /// <summary>
@@ -206,7 +221,7 @@ public static class FormCollectionExtensions {
     }
 
     /// <summary>
-    /// Returns an <see cref="int"/> array based on the values of each form data component with the specified <paramref name="key"/>.
+    /// Returns an <see cref="int"/> list based on the values of each form data component with the specified <paramref name="key"/>.
     /// </summary>
     /// <param name="formData">The form data.</param>
     /// <param name="key">The key of the form data components.</param>
@@ -216,6 +231,19 @@ public static class FormCollectionExtensions {
     /// value will be ignored.</remarks>
     public static List<int> GetInt32List(this IFormCollection? formData, string key) {
         return formData?[key].ToInt32List() ?? [];
+    }
+
+    /// <summary>
+    /// Returns an <see cref="int"/> set based on the values of each form data component with the specified <paramref name="key"/>.
+    /// </summary>
+    /// <param name="formData">The form data.</param>
+    /// <param name="key">The key of the form data components.</param>
+    /// <returns>An <see cref="int"/> set representing the converted values.</returns>
+    /// <remarks>The value of each form data component may themselves be a separated list of <see cref="int"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="int"/>
+    /// value will be ignored.</remarks>
+    public static HashSet<int> GetInt32Set(this IFormCollection? formData, string key) {
+        return formData?[key].ToInt32Set() ?? [];
     }
 
     #endregion
@@ -310,6 +338,19 @@ public static class FormCollectionExtensions {
         return formData?[key].ToInt64List() ?? [];
     }
 
+    /// <summary>
+    /// Returns a <see cref="long"/> set based of the values of each form data component with the specified <paramref name="key"/>.
+    /// </summary>
+    /// <param name="formData">The form data.</param>
+    /// <param name="key">The key of the form data components.</param>
+    /// <returns>A <see cref="long"/> set representing the converted values.</returns>
+    /// <remarks>The value of each form data component may themselves be a separated list of <see cref="long"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="long"/>
+    /// value will be ignored.</remarks>
+    public static HashSet<long> GetInt64Set(this IFormCollection? formData, string key) {
+        return formData?[key].ToInt64Set() ?? [];
+    }
+
     #endregion
 
     #region GetFloat...
@@ -402,6 +443,19 @@ public static class FormCollectionExtensions {
         return formData?[key].ToFloatList() ?? [];
     }
 
+    /// <summary>
+    /// Returns a <see cref="float"/> set based on the values of each form data component with the specified <paramref name="key"/>.
+    /// </summary>
+    /// <param name="formData">The form data.</param>
+    /// <param name="key">The key of the form data components.</param>
+    /// <returns>A <see cref="float"/> set representing the converted values.</returns>
+    /// <remarks>The value of each form data component may themselves be a separated list of <see cref="float"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="float"/>
+    /// value will be ignored.</remarks>
+    public static HashSet<float> GetFloatSet(this IFormCollection? formData, string key) {
+        return formData?[key].ToFloatSet() ?? [];
+    }
+
     #endregion
 
     #region GetDouble...
@@ -492,6 +546,19 @@ public static class FormCollectionExtensions {
     /// value will be ignored.</remarks>
     public static List<double> GetDoubleList(this IFormCollection? formData, string key) {
         return formData?[key].ToDoubleList() ?? [];
+    }
+
+    /// <summary>
+    /// Returns a <see cref="double"/> set based on the values of each form data component with the specified <paramref name="key"/>.
+    /// </summary>
+    /// <param name="formData">The form data.</param>
+    /// <param name="key">The key of the form data components.</param>
+    /// <returns>A <see cref="double"/> set representing the converted values.</returns>
+    /// <remarks>The value of each form data component may themselves be a separated list of <see cref="double"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="double"/>
+    /// value will be ignored.</remarks>
+    public static HashSet<double> GetDoubleSet(this IFormCollection? formData, string key) {
+        return formData?[key].ToDoubleSet() ?? [];
     }
 
     #endregion
@@ -625,6 +692,16 @@ public static class FormCollectionExtensions {
     }
 
     /// <summary>
+    /// Returns a set of <see cref="Guid"/> values based on the values of each form data component with the specified <paramref name="key"/>.
+    /// </summary>
+    /// <param name="formData">The form data.</param>
+    /// <param name="key">The key of the form data component.</param>
+    /// <returns>An instance of <see cref="HashSet{Guid}"/>.</returns>
+    public static HashSet<Guid> GetGuidSet(this IFormCollection? formData, string key) {
+        return formData?[key].ToGuidSet() ?? [];
+    }
+
+    /// <summary>
     /// Attempts to get the <see cref="Guid"/> value of the string component with the specified <paramref name="key"/>.
     /// </summary>
     /// <param name="formData">The form data.</param>
@@ -744,6 +821,39 @@ public static class FormCollectionExtensions {
     /// <returns>A list of <typeparamref name="TEnum"/>.</returns>
     public static List<TEnum> GetEnumList<TEnum>(this IFormCollection? formData, string key, params char[] separators) where TEnum : struct, Enum {
         return (formData?[key]).ToEnumList<TEnum>(separators);
+    }
+
+    /// <summary>
+    /// Returns a set of <typeparamref name="TEnum"/> values representing the values of each form data component
+    /// matching the specified <paramref name="key"/>.
+    ///
+    /// Notice that this method support both multiple form data components with the same <paramref name="key"/>
+    /// as well as form data components where the value is a comma separated string or similar. Supported
+    /// separators are comma (<c>,</c>), space (<c> </c>), carriage return (<c>\r</c>), new line (<c>\n</c>) and
+    /// tab (<c>\t</c>).
+    /// </summary>
+    /// <typeparam name="TEnum">The enum type.</typeparam>
+    /// <param name="formData">The form data.</param>
+    /// <param name="key">The key of the form data component(s).</param>
+    /// <returns>A set of <typeparamref name="TEnum"/>.</returns>
+    public static HashSet<TEnum> GetEnumSet<TEnum>(this IFormCollection? formData, string key) where TEnum : struct, Enum {
+        return [.. GetEnumList<TEnum>(formData, key)];
+    }
+
+    /// <summary>
+    /// Returns a set of <typeparamref name="TEnum"/> values representing the values of each form data component
+    /// matching the specified <paramref name="key"/>.
+    ///
+    /// Notice that this method support both multiple form data components with the same <paramref name="key"/>
+    /// as well as form data components where the value is separated by one of the following <paramref name="separators"/>.
+    /// </summary>
+    /// <typeparam name="TEnum">The enum type.</typeparam>
+    /// <param name="formData">The form data.</param>
+    /// <param name="key">The key of the form data component(s).</param>
+    /// <param name="separators">An array of supported separators.</param>
+    /// <returns>A set of <typeparamref name="TEnum"/>.</returns>
+    public static HashSet<TEnum> GetEnumSet<TEnum>(this IFormCollection? formData, string key, params char[] separators) where TEnum : struct, Enum {
+        return [.. GetEnumList<TEnum>(formData, key, separators)];
     }
 
     /// <summary>

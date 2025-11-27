@@ -102,9 +102,24 @@ public static class QueryStringExtensions {
     /// <param name="query">The query string.</param>
     /// <param name="key">The key of the query string component(s).</param>
     /// <param name="separators">An array of supported separators.</param>
-    /// <returns>An array of <see cref="string"/>.</returns>
+    /// <returns>A list of <see cref="string"/>.</returns>
     public static List<string> GetStringList(this IQueryCollection? query, string key, params char[] separators) {
         return (query?[key]).ToStringList(separators);
+    }
+
+    /// <summary>
+    /// Returns a set of <see cref="string"/> values representing the values of each query string component
+    /// matching the specified <paramref name="key"/>.
+    ///
+    /// Notice that this method support both multiple query string components with the same <paramref name="key"/>
+    /// as well as query string components where the value is separated by one of the following <paramref name="separators"/>.
+    /// </summary>
+    /// <param name="query">The query string.</param>
+    /// <param name="key">The key of the query string component(s).</param>
+    /// <param name="separators">An array of supported separators.</param>
+    /// <returns>A set of <see cref="string"/> values.</returns>
+    public static HashSet<string> GetStringSet(this IQueryCollection? query, string key, params char[] separators) {
+        return (query?[key]).ToStringSet(separators);
     }
 
     /// <summary>
@@ -206,7 +221,7 @@ public static class QueryStringExtensions {
     }
 
     /// <summary>
-    /// Returns an <see cref="int"/> array based on the values of each query string component with the specified <paramref name="key"/>.
+    /// Returns an <see cref="int"/> list based on the values of each query string component with the specified <paramref name="key"/>.
     /// </summary>
     /// <param name="query">The query string.</param>
     /// <param name="key">The key of the query string components.</param>
@@ -216,6 +231,19 @@ public static class QueryStringExtensions {
     /// value will be ignored.</remarks>
     public static List<int> GetInt32List(this IQueryCollection? query, string key) {
         return query?[key].ToInt32List() ?? [];
+    }
+
+    /// <summary>
+    /// Returns an <see cref="int"/> set based on the values of each query string component with the specified <paramref name="key"/>.
+    /// </summary>
+    /// <param name="query">The query string.</param>
+    /// <param name="key">The key of the query string components.</param>
+    /// <returns>An <see cref="int"/> set representing the converted values.</returns>
+    /// <remarks>The value of each query string component may themselves be a separated list of <see cref="int"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="int"/>
+    /// value will be ignored.</remarks>
+    public static HashSet<int> GetInt32Set(this IQueryCollection? query, string key) {
+        return query?[key].ToInt32Set() ?? [];
     }
 
     #endregion
@@ -310,6 +338,19 @@ public static class QueryStringExtensions {
         return query?[key].ToInt64List() ?? [];
     }
 
+    /// <summary>
+    /// Returns a <see cref="long"/> set based of the values of each query string component with the specified <paramref name="key"/>.
+    /// </summary>
+    /// <param name="query">The query string.</param>
+    /// <param name="key">The key of the query string components.</param>
+    /// <returns>A <see cref="long"/> set representing the converted values.</returns>
+    /// <remarks>The value of each query string component may themselves be a separated list of <see cref="long"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="long"/>
+    /// value will be ignored.</remarks>
+    public static HashSet<long> GetInt64Set(this IQueryCollection? query, string key) {
+        return query?[key].ToInt64Set() ?? [];
+    }
+
     #endregion
 
     #region GetFloat...
@@ -402,6 +443,19 @@ public static class QueryStringExtensions {
         return query?[key].ToFloatList() ?? [];
     }
 
+    /// <summary>
+    /// Returns a <see cref="float"/> set based on the values of each query string component with the specified <paramref name="key"/>.
+    /// </summary>
+    /// <param name="query">The query string.</param>
+    /// <param name="key">The key of the query string components.</param>
+    /// <returns>A <see cref="float"/> set representing the converted values.</returns>
+    /// <remarks>The value of each query string component may themselves be a separated list of <see cref="float"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="float"/>
+    /// value will be ignored.</remarks>
+    public static HashSet<float> GetFloatSet(this IQueryCollection? query, string key) {
+        return query?[key].ToFloatSet() ?? [];
+    }
+
     #endregion
 
     #region GetDouble...
@@ -492,6 +546,19 @@ public static class QueryStringExtensions {
     /// value will be ignored.</remarks>
     public static List<double> GetDoubleList(this IQueryCollection? query, string key) {
         return query?[key].ToDoubleList() ?? [];
+    }
+
+    /// <summary>
+    /// Returns a <see cref="double"/> set based on the values of each query string component with the specified <paramref name="key"/>.
+    /// </summary>
+    /// <param name="query">The query string.</param>
+    /// <param name="key">The key of the query string components.</param>
+    /// <returns>A <see cref="double"/> set representing the converted values.</returns>
+    /// <remarks>The value of each query string component may themselves be a separated list of <see cref="double"/>
+    /// values - e.g. separated by commas. Values that can not be converted to a corresponding <see cref="double"/>
+    /// value will be ignored.</remarks>
+    public static HashSet<double> GetDoubleSet(this IQueryCollection? query, string key) {
+        return query?[key].ToDoubleSet() ?? [];
     }
 
     #endregion
@@ -625,6 +692,16 @@ public static class QueryStringExtensions {
     }
 
     /// <summary>
+    /// Returns a set of <see cref="Guid"/> values based on the values of each query string component with the specified <paramref name="key"/>.
+    /// </summary>
+    /// <param name="query">The query string.</param>
+    /// <param name="key">The key of the query string component.</param>
+    /// <returns>An instance of <see cref="HashSet{Guid}"/>.</returns>
+    public static HashSet<Guid> GetGuidSet(this IQueryCollection? query, string key) {
+        return query?[key].ToGuidSet() ?? [];
+    }
+
+    /// <summary>
     /// Attempts to get the <see cref="Guid"/> value of the string component with the specified <paramref name="key"/>.
     /// </summary>
     /// <param name="query">The query string.</param>
@@ -744,6 +821,39 @@ public static class QueryStringExtensions {
     /// <returns>A list of <typeparamref name="TEnum"/>.</returns>
     public static List<TEnum> GetEnumList<TEnum>(this IQueryCollection? query, string key, params char[] separators) where TEnum : struct, Enum {
         return (query?[key]).ToEnumList<TEnum>(separators);
+    }
+
+    /// <summary>
+    /// Returns a set of <typeparamref name="TEnum"/> values representing the values of each query string component
+    /// matching the specified <paramref name="key"/>.
+    ///
+    /// Notice that this method support both multiple query string components with the same <paramref name="key"/>
+    /// as well as query string components where the value is a comma separated string or similar. Supported
+    /// separators are comma (<c>,</c>), space (<c> </c>), carriage return (<c>\r</c>), new line (<c>\n</c>) and
+    /// tab (<c>\t</c>).
+    /// </summary>
+    /// <typeparam name="TEnum">The enum type.</typeparam>
+    /// <param name="query">The query string.</param>
+    /// <param name="key">The key of the query string component(s).</param>
+    /// <returns>A set of <typeparamref name="TEnum"/>.</returns>
+    public static HashSet<TEnum> GetEnumSet<TEnum>(this IQueryCollection? query, string key) where TEnum : struct, Enum {
+        return (query?[key]).ToEnumSet<TEnum>();
+    }
+
+    /// <summary>
+    /// Returns a set of <typeparamref name="TEnum"/> values representing the values of each query string component
+    /// matching the specified <paramref name="key"/>.
+    ///
+    /// Notice that this method support both multiple query string components with the same <paramref name="key"/>
+    /// as well as query string components where the value is separated by one of the following <paramref name="separators"/>.
+    /// </summary>
+    /// <typeparam name="TEnum">The enum type.</typeparam>
+    /// <param name="query">The query string.</param>
+    /// <param name="key">The key of the query string component(s).</param>
+    /// <param name="separators">An array of supported separators.</param>
+    /// <returns>A set of <typeparamref name="TEnum"/>.</returns>
+    public static HashSet<TEnum> GetEnumSet<TEnum>(this IQueryCollection? query, string key, params char[] separators) where TEnum : struct, Enum {
+        return (query?[key]).ToEnumSet<TEnum>(separators);
     }
 
     /// <summary>

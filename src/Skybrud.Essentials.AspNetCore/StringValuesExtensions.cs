@@ -57,6 +57,25 @@ public static class StringValuesExtensions {
         return values?.SelectMany(x => StringUtils.ParseStringArray(x, separators)).ToList() ?? [];
     }
 
+    /// <summary>
+    /// Parses the specified array of string <paramref name="values"/> into a <see cref="string"/> set.
+    /// </summary>
+    /// <param name="values">The string values.</param>
+    /// <returns>A set of <see cref="string"/> values.</returns>
+    public static HashSet<string> ToStringSet(this StringValues? values) {
+        return values?.SelectMany(StringUtils.ParseStringSet).ToHashSet() ?? [];
+    }
+
+    /// <summary>
+    /// Parses the specified array of string <paramref name="values"/> into a <see cref="string"/> set.
+    /// </summary>
+    /// <param name="values">The string values.</param>
+    /// <param name="separators">An array of supported separators.</param>
+    /// <returns>A list of <see cref="string"/> values.</returns>
+    public static HashSet<string> ToStringSet(this StringValues? values, params char[] separators) {
+        return values?.SelectMany(x => StringUtils.ParseStringSet(x, separators)).ToHashSet() ?? [];
+    }
+
     #endregion
 
     #region ToInt32...
@@ -110,6 +129,15 @@ public static class StringValuesExtensions {
     /// <returns>A list of <see cref="int"/>.</returns>
     public static List<int> ToInt32List(this StringValues values) {
         return [.. values.SelectMany(StringUtils.ParseInt32List)];
+    }
+
+    /// <summary>
+    /// Parses the specified array of string <paramref name="values"/> into an <see cref="int"/> set.
+    /// </summary>
+    /// <param name="values">The string values.</param>
+    /// <returns>A set of <see cref="int"/> values.</returns>
+    public static HashSet<int> ToInt32Set(this StringValues values) {
+        return [.. values.SelectMany(StringUtils.ParseInt32Array)];
     }
 
     #endregion
@@ -167,6 +195,15 @@ public static class StringValuesExtensions {
         return [.. values.SelectMany(StringUtils.ParseInt64List)];
     }
 
+    /// <summary>
+    /// Parses the specified array of string <paramref name="values"/> into an <see cref="long"/> set.
+    /// </summary>
+    /// <param name="values">The string values.</param>
+    /// <returns>A set of <see cref="long"/> values.</returns>
+    public static HashSet<long> ToInt64Set(this StringValues values) {
+        return [.. values.SelectMany(StringUtils.ParseInt64Array)];
+    }
+
     #endregion
 
     #region ToFloat...
@@ -222,6 +259,15 @@ public static class StringValuesExtensions {
         return [.. values.SelectMany(StringUtils.ParseFloatList)];
     }
 
+    /// <summary>
+    /// Parses the specified array of string <paramref name="values"/> into an <see cref="float"/> set.
+    /// </summary>
+    /// <param name="values">The string values.</param>
+    /// <returns>A set of <see cref="float"/> values.</returns>
+    public static HashSet<float> ToFloatSet(this StringValues values) {
+        return [.. values.SelectMany(StringUtils.ParseFloatArray)];
+    }
+
     #endregion
 
     #region ToDouble...
@@ -275,6 +321,15 @@ public static class StringValuesExtensions {
     /// <returns>A list of <see cref="double"/>.</returns>
     public static List<double> ToDoubleList(this StringValues values) {
         return [.. values.SelectMany(StringUtils.ParseDoubleList)];
+    }
+
+    /// <summary>
+    /// Parses the specified array of string <paramref name="values"/> into an <see cref="double"/> set.
+    /// </summary>
+    /// <param name="values">The string values.</param>
+    /// <returns>A set of <see cref="double"/> values.</returns>
+    public static HashSet<double> ToDoubleSet(this StringValues values) {
+        return [.. values.SelectMany(StringUtils.ParseDoubleArray)];
     }
 
     #endregion
@@ -366,6 +421,15 @@ public static class StringValuesExtensions {
     /// <returns>A list of <see cref="Guid"/>.</returns>
     public static List<Guid> ToGuidList(this StringValues values) {
         return [.. values.SelectMany(StringUtils.ParseGuidList)];
+    }
+
+    /// <summary>
+    /// Parses the specified array of string <paramref name="values"/> into an <see cref="Guid"/> set.
+    /// </summary>
+    /// <param name="values">The string values.</param>
+    /// <returns>A set of <see cref="Guid"/> values.</returns>
+    public static HashSet<Guid> ToGuidSet(this StringValues values) {
+        return [.. values.SelectMany(StringUtils.ParseGuidArray)];
     }
 
     #endregion
@@ -460,6 +524,25 @@ public static class StringValuesExtensions {
 
         return list;
 
+    }
+
+    /// <summary>
+    /// Parses the specified array of string <paramref name="values"/> into a corresponding <typeparamref name="TEnum"/> set.
+    /// </summary>
+    /// <param name="values">The string values.</param>
+    /// <returns>A set of <typeparamref name="TEnum"/> values.</returns>
+    public static HashSet<TEnum> ToEnumSet<TEnum>(this StringValues? values) where TEnum : struct, Enum {
+        return values is { Count: > 0 } ? [.. ToEnumList<TEnum>(values)] : [];
+    }
+
+    /// <summary>
+    /// Parses the specified array of string <paramref name="values"/> into a corresponding <typeparamref name="TEnum"/> set.
+    /// </summary>
+    /// <param name="values">The string values.</param>
+    /// <param name="separators">An array of supported separators.</param>
+    /// <returns>A set of <typeparamref name="TEnum"/> values.</returns>
+    public static HashSet<TEnum> ToEnumSet<TEnum>(this StringValues? values, params char[] separators) where TEnum : struct, Enum {
+        return values is { Count: > 0 } ? [.. ToEnumList<TEnum>(values, separators)] : [];
     }
 
     #endregion
