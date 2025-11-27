@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Net;
+using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
-using Skybrud.Essentials.Strings.Extensions;
-using System.Diagnostics.CodeAnalysis;
-using Skybrud.Essentials.Strings;
-using System.Collections.Generic;
 using Skybrud.Essentials.Enums;
+using Skybrud.Essentials.Strings;
+using Skybrud.Essentials.Strings.Extensions;
+using Skybrud.Essentials.Time;
 
 // ReSharper disable ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
 
@@ -770,5 +773,74 @@ public static class FormCollectionExtensions {
     }
 
     #endregion
+
+    #region GetDate...
+
+    /// <summary>
+    /// Returns the corresponding <see cref="EssentialsDate"/> value of the first form data component with the
+    /// specified <paramref name="key"/>. If a matching form data component isn't found, or it's value cannot be converted to a <see cref="EssentialsDate"/>, <see langword="null"/> is returned instead.
+    /// </summary>
+    /// <param name="formData">The form data.</param>
+    /// <param name="key">The key of the form data component.</param>
+    /// <returns>An instance of <see cref="EssentialsDate"/> if successful; otherwise, <see langword="null"/>.</returns>
+    public static EssentialsDate? GetDate(this IFormCollection? formData, string key) {
+        return TryGetDate(formData, key, out EssentialsDate? result) ? result : null;
+    }
+
+    /// <summary>
+    /// Returns the corresponding <see cref="EssentialsDate"/> value of the first form data component with the
+    /// specified <paramref name="key"/>. If a matching form data component isn't found, or it's value cannot be converted to a <see cref="EssentialsDate"/>, an exception is thrown instead.
+    /// </summary>
+    /// <param name="formData">The form data.</param>
+    /// <param name="key">The key of the form data component.</param>
+    /// <returns>An instance of <see cref="EssentialsDate"/>.</returns>
+    /// <exception cref="InvalidOperationException">If a matching form data component isn't found, or it's value cannot be converted to a <see cref="EssentialsDate"/>.</exception>
+    public static EssentialsDate GetRequiredDate(this IFormCollection? formData, string key) {
+        if (formData.TryGetDate(key, out EssentialsDate? result)) return result;
+        throw new InvalidOperationException($"The required form data parameter '{key}' was not found or could not be converted to an EssentialsDate.");
+    }
+
+    /// <summary>
+    /// Attempts to get a <see cref="EssentialsDate"/> from the form data component with the specified <paramref name="key"/>.
+    /// </summary>
+    /// <param name="formData">The form data.</param>
+    /// <param name="key">The key of the form data component.</param>
+    /// <param name="result">When this method returns, contains the parsed <see cref="EssentialsDate"/> value if successful; otherwise, <see langword="null"/>. This parameter is passed uninitialized.</param>
+    /// <returns><see langword="true"/> if successful; otherwise, <see langword="false"/>.</returns>
+    public static bool TryGetDate(this IFormCollection? formData, string key, [NotNullWhen(true)] out EssentialsDate? result) {
+        string? value = formData.GetString(key);
+        return EssentialsDate.TryParse(value, out result);
+    }
+
+    #endregion
+
+    /// <summary>
+    /// Returns a URL encoded string representing the specified <paramref name="formData"/>.
+    /// </summary>
+    /// <param name="formData">The form data to be encoded.</param>
+    /// <returns>The URL encoded version of the form data.</returns>
+    public static string ToUrlEncodedString(this IFormCollection? formData) {
+
+        if (formData == null) return string.Empty;
+
+        StringBuilder sb = new();
+
+        int i = 0;
+
+        foreach ((string key, StringValues stringValues) in formData) {
+
+            foreach (string? value in stringValues) {
+                if (value is null) continue;
+                if (i++ > 0) sb.Append('&');
+                sb.Append(WebUtility.UrlEncode(key));
+                sb.Append('=');
+                sb.Append(WebUtility.UrlEncode(value));
+            }
+
+        }
+
+        return sb.ToString();
+
+    }
 
 }

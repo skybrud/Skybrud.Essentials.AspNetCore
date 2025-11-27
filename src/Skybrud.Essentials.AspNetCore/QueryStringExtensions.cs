@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Primitives;
 using System.Net;
 using System.Text;
-using Skybrud.Essentials.Strings.Extensions;
-using System.Diagnostics.CodeAnalysis;
-using Skybrud.Essentials.Strings;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 using Skybrud.Essentials.Enums;
+using Skybrud.Essentials.Strings;
+using Skybrud.Essentials.Strings.Extensions;
+using Skybrud.Essentials.Time;
 
 // ReSharper disable ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
 
@@ -769,6 +770,46 @@ public static class QueryStringExtensions {
     public static bool TryGetEnum<TEnum>(this IQueryCollection? query, string key, out TEnum? result) where TEnum : struct, Enum {
         result = null;
         return TryGetString(query, key, out string? value) && EnumUtils.TryParseEnum(value, out result);
+    }
+
+    #endregion
+
+    #region GetDate...
+
+    /// <summary>
+    /// Returns the corresponding <see cref="EssentialsDate"/> value of the first query string component with the
+    /// specified <paramref name="key"/>. If a matching query string component isn't found, or it's value cannot be converted to a <see cref="EssentialsDate"/>, <see langword="null"/> is returned instead.
+    /// </summary>
+    /// <param name="query">The query string.</param>
+    /// <param name="key">The key of the query string component.</param>
+    /// <returns>An instance of <see cref="EssentialsDate"/> if successful; otherwise, <see langword="null"/>.</returns>
+    public static EssentialsDate? GetDate(this IQueryCollection query, string key) {
+        return TryGetDate(query, key, out EssentialsDate? result) ? result : null;
+    }
+
+    /// <summary>
+    /// Returns the corresponding <see cref="EssentialsDate"/> value of the first query string component with the
+    /// specified <paramref name="key"/>. If a matching query string component isn't found, or it's value cannot be converted to a <see cref="EssentialsDate"/>, an exception is thrown instead.
+    /// </summary>
+    /// <param name="query">The query string.</param>
+    /// <param name="key">The key of the query string component.</param>
+    /// <returns>An instance of <see cref="EssentialsDate"/>.</returns>
+    /// <exception cref="InvalidOperationException">If a matching form data component isn't found, or it's value cannot be converted to a <see cref="EssentialsDate"/>.</exception>
+    public static EssentialsDate GetRequiredDate(this IQueryCollection query, string key) {
+        if (query.TryGetDate(key, out EssentialsDate? result)) return result;
+        throw new InvalidOperationException($"The required query string parameter '{key}' was not found or could not be converted to an EssentialsDate.");
+    }
+
+    /// <summary>
+    /// Attempts to get a <see cref="EssentialsDate"/> from the query string component with the specified <paramref name="key"/>.
+    /// </summary>
+    /// <param name="query">The query string.</param>
+    /// <param name="key">The key of the query string component.</param>
+    /// <param name="result">When this method returns, contains the parsed <see cref="EssentialsDate"/> value if successful; otherwise, <see langword="null"/>. This parameter is passed uninitialized.</param>
+    /// <returns><see langword="true"/> if successful; otherwise, <see langword="false"/>.</returns>
+    public static bool TryGetDate(this IQueryCollection query, string key, [NotNullWhen(true)] out EssentialsDate? result) {
+        string? value = query.GetString(key);
+        return EssentialsDate.TryParse(value, out result);
     }
 
     #endregion
