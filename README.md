@@ -1,6 +1,6 @@
 # Skybrud.Essentials.AspNetCore
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/skybrud/Skybrud.Essentials.AspNetCore/blob/v1/main/LICENSE.md)
 [![NuGet](https://img.shields.io/nuget/vpre/Skybrud.Essentials.AspNetCore.svg)](https://www.nuget.org/packages/Skybrud.Essentials.AspNetCore)
 [![NuGet](https://img.shields.io/nuget/dt/Skybrud.Essentials.AspNetCore.svg)](https://www.nuget.org/packages/Skybrud.Essentials.AspNetCore)
 [![Skybrud.Essentials.AspNetCore at packages.limbo.works](https://img.shields.io/badge/limbo-packages-blue)](https://packages.limbo.works/skybrud.essentials.aspnetcore/)
@@ -10,13 +10,27 @@
 <table>
   <tr>
     <td><strong>License:</strong></td>
-    <td><a href="./LICENSE.md"><strong>MIT License</strong></a></td>
-  </tr>
-  <tr>
-    <td><strong>Target Frameworks:</strong></td>
-    <td>.NET 5, .NET 6 and .NET 7</td>
+    <td><a href="https://github.com/skybrud/Skybrud.Essentials.AspNetCore/blob/v1/main/LICENSE.md"><strong>MIT License</strong></a></td>
   </tr>
 </table>
+
+
+
+
+
+<br /><br />
+
+### Target Frameworks
+
+- .NET 5
+- .NET 6
+- .NET 7
+- .NET 8
+- .NET 10
+
+
+
+
 
 <br /><br />
 
