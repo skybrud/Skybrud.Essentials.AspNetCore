@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="../.gitignore" />
+    <File Path="../debug.bat" />
+    <File Path="../LICENSE.md" />
+    <File Path="../NUGET.md" />
+    <File Path="../README.md" />
+    <File Path="../release.bat" />
+    <File Path="Skybrud.Essentials.AspNetCore.sln.DotSettings" />
+  </Folder>
+  <Project Path="Skybrud.Essentials.AspNetCore/Skybrud.Essentials.AspNetCore.csproj" />
+  <Project Path="TestProject1/TestProject1.csproj" />
+</Solution>
